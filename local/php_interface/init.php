@@ -8,3 +8,6 @@ if(file_exists($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/include/error.php
 
 if(file_exists($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/include/feedback.php"))
     require_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/include/feedback.php");
+
+if(file_exists($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/include/menu.php"))
+    require_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/include/menu.php");
