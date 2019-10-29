@@ -21,6 +21,7 @@ if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["FIRM_IBLOCK_ID"] && $arParams[
 
 
         $arSelect = Array("ID", "NAME", "IBLOCK_SECTION_ID","PROPERTY_PRICE", "PROPERTY_MATERIAL", "PROPERTY_" . $arParams["CODE"],  "CODE");
+
         $arFilter = Array("IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"], "PROPERTY_" . $arParams["CODE"] => $firm, "ACTIVE_DATE" => "Y", "ACTIVE" => "Y");
         $res = CIBlockElement::GetList(Array("NAME"=>"ASC", "SORT"=>"ASC"), $arFilter, false, Array("nPageSize" => 50), $arSelect);
         while ($ob = $res->GetNext()) {
