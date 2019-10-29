@@ -5,6 +5,14 @@ use Bitrix\Main\Loader,
     Bitrix\Iblock;
 
 CModule::IncludeModule("iblock");
+$this->AddIncludeAreaIcon(
+    array(
+        'URL'   => '/bitrix/admin/iblock_element_admin.php?IBLOCK_ID='.$arParams["FIRM_IBLOCK_ID"].'&type=news&lang=ru&apply_filter=Y&back_url_pub=%2F',
+        'TITLE' => "ИБ в админке",
+        "IN_PARAMS_MENU" => true, //показать в контекстном меню
+    )
+);
+
 if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["FIRM_IBLOCK_ID"] && $arParams["CODE"]) {
     if ($this->StartResultCache()) {
         $arResult = array();
