@@ -3,7 +3,7 @@
 
 <ul>
     <? foreach ($arResult['ITEM'] as $news): ?>
-        <li><h5><?= $news["NAME"] ?> - <?= $news['DATE'] ?></h5>
+        <li><h5><?= $news["NAME"] ?></h5>
             <ul>
                 <? foreach ($news['CATALOG'] as $item): ?>
                     <li><?= $item['NAME'] ?> - <?= $item['PROPERTY_PRICE_VALUE'] ?>
