@@ -21,10 +21,17 @@ if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["FIRM_IBLOCK_ID"] && $arParams[
 
 
         $arSelect = Array("ID", "NAME", "IBLOCK_SECTION_ID","PROPERTY_PRICE", "PROPERTY_MATERIAL", "PROPERTY_" . $arParams["CODE"],  "CODE");
-
         $arFilter = Array("IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"], "PROPERTY_" . $arParams["CODE"] => $firm, "ACTIVE_DATE" => "Y", "ACTIVE" => "Y");
         $res = CIBlockElement::GetList(Array("NAME"=>"ASC", "SORT"=>"ASC"), $arFilter, false, Array("nPageSize" => 50), $arSelect);
         while ($ob = $res->GetNext()) {
+            $arButtons = CIBlock::GetPanelButtons(
+                $arParams["PRODUCTS_IBLOCK_ID"],
+                $ob["ID"],
+                0,
+                array("SECTION_BUTTONS"=>false, "SESSID"=>false)
+            );
+            $ob["EDIT_LINK"] = $arButtons["edit"]["edit_element"]["ACTION_URL"];
+            $ob["DELETE_LINK"] = $arButtons["edit"]["delete_element"]["ACTION_URL"];
             if ($arResult["ITEM"][$ob["PROPERTY_" . $arParams["CODE"] . "_VALUE"]]) {
                 $arResult["ITEM"][$ob["PROPERTY_" . $arParams["CODE"] . "_VALUE"]]["CATALOG"][] = $ob;
             }
