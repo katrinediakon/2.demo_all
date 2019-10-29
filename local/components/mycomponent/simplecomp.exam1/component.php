@@ -6,8 +6,11 @@ use Bitrix\Main\Loader,
 
 CModule::IncludeModule("iblock");
 $arNavigation = CDBResult::GetNavParams($arNavParams);
+global $CACHE_MANAGER;
 if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["NEWS_IBLOCK_ID"] && $arParams["CODE"]) {
+
     if ($this->StartResultCache(false, $arNavigation)) {
+
         $arResult = array();
         $arSelect = Array("ID", "NAME", "DATE_ACTIVE_FROM");
         $arNavParams = array(

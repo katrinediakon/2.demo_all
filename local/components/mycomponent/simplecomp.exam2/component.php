@@ -12,9 +12,11 @@ $this->AddIncludeAreaIcon(
         "IN_PARAMS_MENU" => true, //показать в контекстном меню
     )
 );
-
+global $CACHE_MANAGER;
 if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["FIRM_IBLOCK_ID"] && $arParams["CODE"]) {
     if ($this->StartResultCache()) {
+        echo time();
+        $CACHE_MANAGER->RegisterTag("iblock_id_".$arParams["PRODUCTS_IBLOCK_ID"]);
         $arResult = array();
         $firm = array();
         $count = 0;
