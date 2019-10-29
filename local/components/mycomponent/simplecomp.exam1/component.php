@@ -24,16 +24,20 @@ if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["NEWS_IBLOCK_ID"] && $arParams[
                 }
             }
         }
+        $count = 0;
         $arSelect = Array("ID", "NAME", "IBLOCK_SECTION_ID", "PROPERTY_PRICE", "PROPERTY_ARTNUMBER", "PROPERTY_MATERIAL");
         $arFilter = Array("IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"], "ACTIVE_DATE" => "Y", "ACTIVE" => "Y");
         $res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize" => 50), $arSelect);
         while ($ob = $res->GetNext()) {
             foreach ($arResult['ITEM'] as $key => $item) {
                 if ($item["CATALOG"][$ob["IBLOCK_SECTION_ID"]]) {
+                    $count++;
                     $arResult['ITEM'][$key]["ITEM"][] = $ob;
                 }
             }
         }
+        $arResult["COUNT"]=$count;
+        $this->SetResultCacheKeys("COUNT");
         $this->includeComponentTemplate();
     }
 }
