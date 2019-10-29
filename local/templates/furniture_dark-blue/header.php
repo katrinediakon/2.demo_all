@@ -94,8 +94,9 @@ $APPLICATION->IncludeFile(
 		</div>
 		
 		<div id="content">
-		
+
 			<div id="sidebar">
+
 <?$APPLICATION->IncludeComponent("bitrix:menu", "left", array(
 	"ROOT_MENU_TYPE" => "left",
 	"MENU_CACHE_TYPE" => "A",
@@ -124,9 +125,28 @@ $APPLICATION->IncludeFile(
 );
 ?>
 					</div>
+
 				</div>
-				
+                <div class="content-block">
+                <div class="content-block-inner">
+                    <h3>Выберите язык</h3>
+                    <?$APPLICATION->IncludeComponent(
+                        "bitrix:main.site.selector",
+                        "en_ru",
+                        array(
+                            "CACHE_TIME" => "3600",
+                            "CACHE_TYPE" => "A",
+                            "SITE_LIST" => array(
+                                0 => "s1",
+                                1 => "s2",
+                            ),
+                            "COMPONENT_TEMPLATE" => "en_ru"
+                        ),
+                        false
+                    );?>
+                </div>
 				<div class="content-block">
+
 					<div class="content-block-inner">
 						
 <?
