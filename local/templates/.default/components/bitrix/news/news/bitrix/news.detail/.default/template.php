@@ -12,6 +12,8 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
+
+<?CJSCore::Init(array("jquery"));?>
 <div class="news-detail">
 	<?if($arParams["DISPLAY_PICTURE"]!="N" && is_array($arResult["DETAIL_PICTURE"])):?>
 		<img
@@ -24,12 +26,16 @@ $this->setFrameMode(true);
 			title="<?=$arResult["DETAIL_PICTURE"]["TITLE"]?>"
 			/>
 	<?endif?>
+
 	<?if($arParams["DISPLAY_DATE"]!="N" && $arResult["DISPLAY_ACTIVE_FROM"]):?>
 		<span class="news-date-time"><?=$arResult["DISPLAY_ACTIVE_FROM"]?></span>
 	<?endif;?>
-	<?if($arParams["DISPLAY_NAME"]!="N" && $arResult["NAME"]):?>
-		<h3><?=$arResult["NAME"]?></h3>
-	<?endif;?>
+    <?if($arParams['AJAX_MODEL']=='Y'):?>
+    <h3><?=$arResult["NAME"]?> 	<button type="button" id="complaint" name="complaint" onclick="complaint(<?=$arResult["ID"]?>)">Пожаловаться</button></h3>
+    <?else:?>
+    <h3><?=$arResult["NAME"]?> 	<button type="button" id="complaint" name="complaint" onclick="document.location.href=window.location+'&COMPLAINT=Y'">Пожаловаться</button></h3>
+    <?endif?>
+
 	<?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arResult["FIELDS"]["PREVIEW_TEXT"]):?>
 		<p><?=$arResult["FIELDS"]["PREVIEW_TEXT"];unset($arResult["FIELDS"]["PREVIEW_TEXT"]);?></p>
 	<?endif;?>

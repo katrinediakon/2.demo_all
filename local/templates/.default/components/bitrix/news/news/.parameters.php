@@ -7,6 +7,11 @@ $arTemplateParameters = array(
 		"TYPE" => "CHECKBOX",
 		"DEFAULT" => "Y",
 	),
+    "AJAX_MODEL" => Array(
+        "NAME" => "собирать жалобы в режиме AJAX",
+        "TYPE" => "CHECKBOX",
+        "DEFAULT" => "Y",
+    ),
     "SPECIALDATE" => Array(
         "NAME" => GetMessage("SPECIALDATE"),
         "TYPE" => "CHECKBOX",
