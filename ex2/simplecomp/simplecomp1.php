@@ -9,6 +9,7 @@ $APPLICATION->SetTitle("Простой компонент 1");
 		"CACHE_TYPE" => "A",
 		"CAT_IBLOCK_ID" => "",
 		"CODE" => "UF_NEWS_LINK",
+		"COUNT" => "2",
 		"NEWS_IBLOCK_ID" => "1",
 		"PRODUCTS_IBLOCK_ID" => "2"
 	)

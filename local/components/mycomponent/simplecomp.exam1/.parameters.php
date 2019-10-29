@@ -14,6 +14,10 @@ $arComponentParameters = array(
             "NAME" => GetMessage("CODE"),
             "TYPE" => "STRING",
         ),
+        "COUNT" => array(
+            "NAME" => GetMessage("COUNT"),
+            "TYPE" => "STRING",
+        ),
         "CACHE_TIME"  =>  array("DEFAULT"=>36000000),
 	),
 );

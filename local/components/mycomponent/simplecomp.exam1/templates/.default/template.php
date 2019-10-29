@@ -2,7 +2,9 @@
 <p><b><?= GetMessage("SIMPLECOMP_EXAM2_CAT_TITLE") ?>:</b></p>
 
     <p>Фильтр: <a href="/ex2/simplecomp/simplecomp1.php?F=Y">/ex2/simplecomp/simplecomp1.php?F=Y</a></p>
-
+<?if($arParams["COUNT"]):?>
+    <?=$arResult["NAV_STRING"]?><br />
+<?endif;?>
 <ul>
     <? foreach ($arResult['ITEM'] as $news): ?>
         <li><h5><?= $news["NAME"] ?> - <?= $news['DATE'] ?></h5>
@@ -23,3 +25,4 @@
         </li>
     <? endforeach; ?>
 </ul>
+<br /><?=$arResult["NAV_STRING"]?>

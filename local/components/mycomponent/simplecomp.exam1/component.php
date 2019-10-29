@@ -5,18 +5,26 @@ use Bitrix\Main\Loader,
     Bitrix\Iblock;
 
 CModule::IncludeModule("iblock");
+$arNavigation = CDBResult::GetNavParams($arNavParams);
 if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["NEWS_IBLOCK_ID"] && $arParams["CODE"]) {
-    if ($this->StartResultCache()) {
+    if ($this->StartResultCache(false, $arNavigation)) {
         $arResult = array();
         $arSelect = Array("ID", "NAME", "DATE_ACTIVE_FROM");
+        $arNavParams = array(
+            "nPageSize" => $arParams["COUNT"],
+            "bDescPageNumbering" => 'Описание',
+            "bShowAll" => 'Y',
+        );
         $arFilter = Array("IBLOCK_ID" => $arParams["NEWS_IBLOCK_ID"], "ACTIVE_DATE" => "Y", "ACTIVE" => "Y");
-        $res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize" => 50), $arSelect);
+        $res = CIBlockElement::GetList(Array(), $arFilter, false, $arNavParams, $arSelect);
+        $arResult["NAV_STRING"] = $res->GetPageNavStringEx($navComponentObject, "", $arParams["PAGER_TEMPLATE"]);
         while ($ob = $res->GetNext()) {
             $arResult['ITEM'][$ob["ID"]]["NAME"] = $ob["NAME"];
             $arResult['ITEM'][$ob["ID"]]["DATE"] = $ob["DATE_ACTIVE_FROM"];
         }
         $arFilter = array('IBLOCK_ID' => $arParams["PRODUCTS_IBLOCK_ID"]); // выберет потомков без учета активности
         $rsSect = CIBlockSection::GetList(array('left_margin' => 'asc'), $arFilter, false, array("ID", "NAME", $arParams["CODE"]));
+
         while ($arSect = $rsSect->GetNext()) {
             foreach ($arSect[$arParams["CODE"]] as $news) {
                 if ($arResult['ITEM'][$news]) {
@@ -52,7 +60,7 @@ if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["NEWS_IBLOCK_ID"] && $arParams[
                 }
             }
         }
-        $arResult["COUNT"]=$count;
+           $arResult["COUNT"]=$count;
         $this->SetResultCacheKeys("COUNT","MIN", "MAX");
         $this->includeComponentTemplate();
     }
