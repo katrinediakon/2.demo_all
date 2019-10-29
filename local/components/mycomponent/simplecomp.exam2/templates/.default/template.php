@@ -6,9 +6,14 @@
         <li><h5><?= $news["NAME"] ?></h5>
             <ul>
                 <? foreach ($news['CATALOG'] as $item): ?>
-                    <li><?= $item['NAME'] ?> - <?= $item['PROPERTY_PRICE_VALUE'] ?>
-                        - <?= $item['PROPERTY_MATERIAL_VALUE'] ?>
-                <?endforeach;?>
+                <li><?= $item['NAME'] ?> - <?= $item['PROPERTY_PRICE_VALUE'] ?>
+                    - <?= $item['PROPERTY_MATERIAL_VALUE'] ?>
+                    <? if ($arParams['TEMPLETE']):
+                    $link = str_ireplace("#SECTION_ID#", $item["IBLOCK_SECTION_ID"], $arParams['TEMPLETE']);
+                        $link = str_ireplace("#ELEMENT_CODE#", $item["CODE"].".php", $link);
+                    endif ?>
+                    (<?=$link?>)
+                    <? endforeach; ?>
             </ul>
         </li>
     <? endforeach; ?>
