@@ -42,12 +42,18 @@ if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["NEWS_IBLOCK_ID"] && $arParams[
             foreach ($arResult['ITEM'] as $key => $item) {
                 if ($item["CATALOG"][$ob["IBLOCK_SECTION_ID"]]) {
                     $count++;
+                    if($arResult["MIN"]>$ob["PROPERTY_PRICE_VALUE"] || !$arResult["MIN"]) {
+                        $arResult["MIN"] = $ob["PROPERTY_PRICE_VALUE"];
+                    }
+                    if($arResult["MAX"]<$ob["PROPERTY_PRICE_VALUE"] || !$arResult["MAX"]) {
+                        $arResult["MAX"] = $ob["PROPERTY_PRICE_VALUE"];
+                    }
                     $arResult['ITEM'][$key]["ITEM"][] = $ob;
                 }
             }
         }
         $arResult["COUNT"]=$count;
-        $this->SetResultCacheKeys("COUNT");
+        $this->SetResultCacheKeys("COUNT","MIN", "MAX");
         $this->includeComponentTemplate();
     }
 }
