@@ -14,7 +14,7 @@ $this->AddIncludeAreaIcon(
 );
 global $CACHE_MANAGER;
 if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["FIRM_IBLOCK_ID"] && $arParams["CODE"]) {
-    if ($this->StartResultCache()) {
+    if ($this->StartResultCache(false,  CUser::GetUserGroup($USER->GetID()))) {
         $CACHE_MANAGER->RegisterTag("iblock_id_".$arParams["PRODUCTS_IBLOCK_ID"]);
         $arResult = array();
         $firm = array();
