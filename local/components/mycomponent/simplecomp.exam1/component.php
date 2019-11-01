@@ -9,7 +9,7 @@ $arNavigation = CDBResult::GetNavParams($arNavParams);
 global $CACHE_MANAGER;
 if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["NEWS_IBLOCK_ID"] && $arParams["CODE"]) {
 
-    if ($this->StartResultCache(false, $arNavigation)) {
+    if ($this->StartResultCache(false, array($arNavigation,$_GET["F"]))) {
 
         $arResult = array();
         $arSelect = Array("ID", "NAME", "DATE_ACTIVE_FROM");
