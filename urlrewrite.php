@@ -1,6 +1,6 @@
 <?php
 $arUrlRewrite=array (
-  3 => 
+  8 => 
   array (
     'CONDITION' => '#^/ex2/complexcomponent/#',
     'RULE' => '',

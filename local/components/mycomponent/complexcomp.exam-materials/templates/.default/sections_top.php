@@ -13,9 +13,17 @@
 $this->setFrameMode(true);
 ?>
 <?
-//ссылка на страницу станицу exampage 
-$url = "/ex2/complexcomponent/exam/new/123/?PARAM2=456";
-?><?=GetMessage("EXAM_TEXT_LINK_CP_PHOTO")?> <a href="<?=$url?>"><?=$url?></a>  
+//ссылка на страницу станицу exampage
+$param1 = 123;
+$param2 = 456;
+$url = '';
+
+if ($arParams['SEF_MODE'] == 'Y') {
+    $url = $arParams['SEF_FOLDER'] . str_replace('#PARAM1#', $param1, $arParams['SEF_URL_TEMPLATES']['exampage']) . '?PARAM2=' . $param2;
+} else {
+    $url = $APPLICATION->GetCurPage() . '?PARAM1=' . $param1 . '&PARAM2=' . $param2;
+}
+?><?=GetMessage("EXAM_TEXT_LINK_CP_PHOTO")?> <a href="<?=$url?>"><?=$url?></a>
 
 <?$APPLICATION->IncludeComponent(
 	"bitrix:photo.sections.top",
@@ -39,6 +47,7 @@ $url = "/ex2/complexcomponent/exam/new/123/?PARAM2=456";
 		"CACHE_TYPE" => $arParams["CACHE_TYPE"],
 		"CACHE_TIME" => $arParams["CACHE_TIME"],
 		"CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
+		"SEF_URL_TEMPLATES" => $arParams["SEF_URL_TEMPLATES"],
 
 		"SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
 		"DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["detail"],

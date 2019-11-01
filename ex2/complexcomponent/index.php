@@ -80,6 +80,7 @@ $APPLICATION->SetTitle("Комплексный компонент");
 			"sections_top" => "",
 			"section" => "#SECTION_ID#/",
 			"detail" => "#SECTION_ID#/#ELEMENT_ID#/",
+			"exampage" => "exam/new/#PARAM1#/",
 		)
 	),
 	false

@@ -95,14 +95,14 @@ $arComponentParameters = array(
 				"VARIABLES" => array("ELEMENT_ID", "SECTION_ID"),
 			),
 				
-			//добавили новую страницу
-			//"exampage" => array(
-					//"NAME" => GetMessage("EXAM_PAGE"),
-					//DEFAULT
-					//VARIABLES
-			//),
-				
-				
+
+			"exampage" => array(
+					"NAME" => GetMessage("EXAM_PAGE"),
+					"DEFAULT" => 'exam/new/#PARAM1#/',
+					"VARIABLES" => array("PARAM1"),
+			),
+
+
 		),
 		"IBLOCK_TYPE" => array(
 			"PARENT" => "BASE",
