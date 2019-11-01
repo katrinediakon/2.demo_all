@@ -38,7 +38,6 @@ if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["NEWS_IBLOCK_ID"] && $arParams[
         $count = 0;
         $arSelect = Array("ID", "NAME", "IBLOCK_SECTION_ID", "PROPERTY_PRICE", "PROPERTY_ARTNUMBER", "PROPERTY_MATERIAL");
         if($_GET["F"]) {
-            echo 1;
             $arFilter = Array("IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"], "ACTIVE_DATE" => "Y", "ACTIVE" => "Y",
                 array(
                     "LOGIC" => "OR",
