@@ -63,22 +63,26 @@ if ($USER->GetID()) {
                     $arResult["USERS"][$ob["PROPERTY_" . $arParams["CODE_AUTHOR"] . "_VALUE"]]["NEWS"][] = $ob;
                 }
             }
-            $count=0;
+            $id=0;
+            $arNews = array();
             foreach ($arResult["USERS"] as $user => $news_user) {
                 if ($user != $USER->GetID()) {
                     foreach ($news_user["NEWS"] as $key_news => $new) {
                         if (in_array($new["NAME"], $news)) {
-
                             unset($arResult["USERS"][$user]["NEWS"][$key_news]);
                         }
                     }
                 }
-                $count+=count($arResult["USERS"][$user]["NEWS"]);
+                if(!array_search($arResult["USERS"][$user]["NEWS"][$key_news], $arNews))
+                {
+                    $arNews[] = $arResult["USERS"][$user]["NEWS"]["NAME"];
+                }
             }
-
-            $arResult["COUNT"] = $count;
+            unset($arResult["USERS"][$USER->GetID()]);
+            $arResult["COUNT"] = count($arNews);
             $this->SetResultCacheKeys("COUNT");
             $this->includeComponentTemplate();
+            $APPLICATION->SetTitle("ВЫБРАННЫХ НОВОСТЕЙ - " . $arResult["COUNT"]);
         }
     }
 }
