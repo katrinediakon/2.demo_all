@@ -63,9 +63,12 @@ if ($arParams["PRODUCTS_IBLOCK_ID"] && $arParams["NEWS_IBLOCK_ID"] && $arParams[
                 }
             }
         }
+
            $arResult["COUNT"]=$count;
+
         $this->SetResultCacheKeys("COUNT","MIN", "MAX");
         $this->includeComponentTemplate();
+        $APPLICATION->SetTitle("Элементов - " . $arResult["COUNT"]);
     }
 }
 ?>
