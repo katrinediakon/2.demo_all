@@ -1,5 +1,11 @@
 <?php
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+
+if($arParams["CANONICAL"]) {
+    $APPLICATION->SetPageProperty("CANONICAL",  $arResult['CANONICAL']);
+}
+
+
 if($_GET["VOTE"]) {
     echo "<script>  document.getElementById('complaint').firstChild.data = 'Ваше мнение учтено, '+" . $_GET["VOTE"] . "; </script>";
 }
