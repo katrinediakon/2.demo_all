@@ -13,7 +13,7 @@
 $this->setFrameMode(true);
 ?>
 
-<?CJSCore::Init(array("jquery"));?>
+
 <div class="news-detail">
 	<?if($arParams["DISPLAY_PICTURE"]!="N" && is_array($arResult["DETAIL_PICTURE"])):?>
 		<img
@@ -33,7 +33,7 @@ $this->setFrameMode(true);
     <?if($arParams['AJAX_MODEL']=='Y'):?>
     <h3><?=$arResult["NAME"]?> 	<button type="button" id="complaint" name="complaint" onclick="complaint(<?=$arResult["ID"]?>)">Пожаловаться</button></h3>
     <?else:?>
-    <h3><?=$arResult["NAME"]?> 	<button type="button" id="complaint" name="complaint" onclick="document.location.href=window.location+'&COMPLAINT=Y'">Пожаловаться</button></h3>
+    <h3><?=$arResult["NAME"]?> 	<button type="button" id="complaint" name="complaint" onclick="document.location.href = window.location.pathname + '?COMPLAINT=Y'">Пожаловаться</button></h3>
     <?endif?>
 
 	<?if($arParams["DISPLAY_PREVIEW_TEXT"]!="N" && $arResult["FIELDS"]["PREVIEW_TEXT"]):?>

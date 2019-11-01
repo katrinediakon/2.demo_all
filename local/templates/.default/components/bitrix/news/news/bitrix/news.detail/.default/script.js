@@ -14,6 +14,4 @@ function complaint(id)
 
 
     document.getElementById('complaint').firstChild.data = "Ваше мнение учтено, "+id;
-
-
 }
