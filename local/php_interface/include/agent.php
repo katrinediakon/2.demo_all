@@ -1,5 +1,5 @@
 <?
-function AgentChekUsers()
+function CheckUserCount()
 {
     global $DB;
     if(CModule::IncludeModule("iblock"))
@@ -18,11 +18,7 @@ function AgentChekUsers()
         }
         $order = array('sort' => 'asc');
         $tmp = 'sort';
-        $rsUsers = CUser::GetList($by , $order, $arFilter);
-        while($arItemCat = $rsUsers->GetNext())
-        {
-            print_r($arItemCat);
-        }
+        $rsUsers = CUser::GetList( ($by="personal_country"),$order, $arFilter);
         COption::SetOptionString("main","date",date(H,i,s,d,m,Y));
         $arItems = array();
         while($arItemCat = $rsUsers->GetNext())
@@ -47,6 +43,6 @@ function AgentChekUsers()
             CEvent::Send("INFO_USERS", "s1", $arEventFields);
         }
     }
-    return "AgentChekUsers();";
+    return "CheckUserCount();";
 }
 ?>
